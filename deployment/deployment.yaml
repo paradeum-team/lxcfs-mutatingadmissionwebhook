@@ -28,6 +28,8 @@ spec:
           env:
           - name: BLACK_OR_WHITE
             value: black
+          securityContext:
+            privileged: true
           volumeMounts:
             - name: webhook-certs
               mountPath: /etc/webhook/certs
