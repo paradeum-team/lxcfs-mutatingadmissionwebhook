@@ -1,0 +1,14 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: lxcfs-webhook-deployment-crb
+  labels:
+    app: lxcfs-webhook
+subjects:
+- kind: ServiceAccount
+  name: lxcfs-webhook-sa
+  namespace: pipeline-infra
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: lxcfs-webhook-cr

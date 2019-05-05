@@ -1,0 +1,23 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: lxcfs-webhook-cfg
+  labels:
+    app: lxcfs-webhook
+webhooks:
+  - name: lxcfs-webhook.paraduem.com
+    clientConfig:
+      service:
+        name: lxcfs-webhook-svc
+        namespace: default
+        path: "/mutate"
+      caBundle: ${CA_BUNDLE}
+    rules:
+      - operations: [ "CREATE" ]
+        apiGroups: ["apps", ""]
+        apiVersions: ["v1"]
+        resources: ["deployments"]
+    namespaceSelector:
+      matchLabels:
+        lxcfs-webhook: enabled
+

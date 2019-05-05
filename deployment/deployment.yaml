@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lxcfs-webhook-deployment
+  labels:
+    app: lxcfs-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lxcfs-webhook
+  template:
+    metadata:
+      labels:
+        app: lxcfs-webhook
+    spec:
+      containers:
+        - name: lxcfs-webhook
+          image: registry.paradeum.com/library/lxcfs-webhook:v1
+          imagePullPolicy: Always
+          args:
+            - -tlsCertFile=/etc/webhook/certs/cert.pem
+            - -tlsKeyFile=/etc/webhook/certs/key.pem
+            - -alsologtostderr
+            - -v=4
+            - 2>&1
+          env:
+          - name: BLACK_OR_WHITE
+            value: black
+          volumeMounts:
+            - name: webhook-certs
+              mountPath: /etc/webhook/certs
+              readOnly: true
+      volumes:
+        - name: webhook-certs
+          secret:
+            secretName: lxcfs-webhook-certs
