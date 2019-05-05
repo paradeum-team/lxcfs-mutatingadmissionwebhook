@@ -16,7 +16,7 @@ webhooks:
       - operations: [ "CREATE" ]
         apiGroups: ["apps", ""]
         apiVersions: ["v1"]
-        resources: ["deployments"]
+        resources: ["pods"]
     namespaceSelector:
       matchLabels:
         lxcfs-webhook: enabled
