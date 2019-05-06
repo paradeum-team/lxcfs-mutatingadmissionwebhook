@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sleep
-  annotations:
-    lxcfs-webhook.paradeum.com/mutate: "false"
 spec:
   replicas: 3
   selector:
@@ -13,6 +11,8 @@ spec:
     metadata:
       labels:
         app: sleep
+      annotations:
+        lxcfs-webhook.paradeum.com/mutate: "false"
     spec:
       serviceAccountName: lxcfs-webhook-sa
       containers:
