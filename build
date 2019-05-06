@@ -2,7 +2,7 @@ export http_proxy=http://0.0.0.0:1087
 export https_proxy=http://0.0.0.0:1087
 dep ensure -v
 CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o lxcfs-webhook .
-docker build --no-cache -t registry.paradeum.com/library/lxcfs-webhook:v8 .
+docker build --no-cache -t registry.paradeum.com/library/lxcfs-webhook:latest .
 #rm -rf lxcfs-webhook
 
 #docker push registry.paradeum.com/library/lxcfs-webhook:v8

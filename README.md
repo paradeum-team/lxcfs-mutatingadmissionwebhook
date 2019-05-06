@@ -84,12 +84,12 @@ $ kubectl create -f deployment/sleep.yaml
 ```
 
 ###黑名单和白名单模式
->项目支持黑白名单模式，在deployment中配置环境变量 ‘BLACK_OR_WHITE’  ，black为黑名单模式，white 为白名单模式，默认为黑名单模式。
+>项目支持黑白名单模式，在deployment中配置环境变量 ‘BLACK_OR_WHITE’  ，BLACK为黑名单模式，WHITE 为白名单模式，默认为黑名单模式。
 
 ```
  env:
  - name: BLACK_OR_WHITE
-   value: black
+   value: BLACK
 ```
 >黑名单模式下，应用带有 lxcfs-webhook.paradeum.com/mutate=false 注解，webhook将不进行修改
 

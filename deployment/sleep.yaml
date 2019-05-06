@@ -12,6 +12,7 @@ spec:
       labels:
         app: sleep
     spec:
+      serviceAccountName: lxcfs-webhook-sa
       containers:
       - name: sleep
         image: tutum/curl

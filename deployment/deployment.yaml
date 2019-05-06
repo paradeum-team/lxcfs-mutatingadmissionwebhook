@@ -17,7 +17,7 @@ spec:
       serviceAccountName: lxcfs-webhook-sa
       containers:
         - name: lxcfs-webhook
-          image: registry.paradeum.com/library/lxcfs-webhook:v1
+          image: registry.paradeum.com/library/lxcfs-webhook:latest
           imagePullPolicy: Always
           args:
             - -tlsCertFile=/etc/webhook/certs/cert.pem
