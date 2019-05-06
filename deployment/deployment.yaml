@@ -27,7 +27,7 @@ spec:
             - 2>&1
           env:
           - name: BLACK_OR_WHITE
-            value: black
+            value: BLACK
           securityContext:
             privileged: true
           volumeMounts:
