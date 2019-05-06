@@ -78,6 +78,8 @@ namespace "default" labeled
 
 ### 测试（webhook将会自动挂载lxcfs相关目录）
 
+sleep 测试容器需要有挂载卷的权限
+
 ```
 $ kubectl create -f deployment/sleep.yaml
 
