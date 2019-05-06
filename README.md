@@ -27,22 +27,26 @@ $ oc get secret lxcfs-webhook-certs
 NAME                              TYPE      DATA      AGE
 lxcfs-webhook-certs   Opaque    2         2m
 ```
-###权限配置
+
+### 权限配置
+
 
 - 创建角色，用户并绑定关系
 
 ``` 
-oc  create -f service-account.yaml && oc create -f clusterrole.yaml  && oc create -f clusterrolebinding.yaml
+oc  create -f ./deployment/service-account.yaml && oc create -f ./deployment/clusterrole.yaml  && oc create -f ./deployment/clusterrolebinding.yaml
 ```
+
 - 创建scc
 
 ``` 
-oc create -f lxcfs-webhook-scc.yaml --validate=false
+oc create -f ./deployment/lxcfs-webhook-scc.yaml --validate=false
 
 ```
 
 
 ###创建deployment和service
+
 
 ```
 $ oc create -f deployment/deployment.yaml
@@ -52,7 +56,9 @@ $ oc create -f deployment/service.yaml
 service "lxcfs-webhook-svc" created
 
 ```
+
 ###配置webhook 
+
 
 ```
 $ cat ./deployment/mutatingwebhook.yaml | ./deployment/webhook-patch-ca-bundle.sh > ./deployment/mutatingwebhook-ca-bundle.yaml
@@ -61,7 +67,9 @@ $ kubectl create -f deployment/mutatingwebhook-ca-bundle.yaml
 mutatingwebhookconfiguration.admissionregistration.k8s.io "lxcfs-webhook-cfg" created
 
 ```
+
 ###标记namespace
+
 
 ```
 $ kubectl label namespace default lxcfs-webhook=enabled
