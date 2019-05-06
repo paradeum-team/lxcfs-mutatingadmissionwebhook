@@ -7,7 +7,7 @@
 ## 部署测试
 >本项目部署在openshift环境上，如果使用k8s将脚本中的oc 改为 kubectl 即可
 
-###生成secrets
+### 生成secrets
 
 ```
 $ ./deployment/webhook-create-signed-cert.sh
@@ -45,7 +45,7 @@ oc create -f ./deployment/lxcfs-webhook-scc.yaml --validate=false
 ```
 
 
-###创建deployment和service
+### 创建deployment和service
 
 
 ```
@@ -57,7 +57,7 @@ service "lxcfs-webhook-svc" created
 
 ```
 
-###配置webhook 
+### 配置webhook 
 
 
 ```
@@ -68,7 +68,7 @@ mutatingwebhookconfiguration.admissionregistration.k8s.io "lxcfs-webhook-cfg" cr
 
 ```
 
-###标记namespace
+### 标记namespace
 
 
 ```
@@ -76,14 +76,14 @@ $ kubectl label namespace default lxcfs-webhook=enabled
 namespace "default" labeled
 ```
 
-###测试（webhook将会自动挂载lxcfs相关目录）
+### 测试（webhook将会自动挂载lxcfs相关目录）
 
 ```
 $ kubectl create -f deployment/sleep.yaml
 
 ```
 
-###黑名单和白名单模式
+### 黑名单和白名单模式
 >项目支持黑白名单模式，在deployment中配置环境变量 ‘BLACK_OR_WHITE’  ，BLACK为黑名单模式，WHITE 为白名单模式，默认为黑名单模式。
 
 ```
